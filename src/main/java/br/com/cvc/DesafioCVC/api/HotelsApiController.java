@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.cvc.DesafioCVC.model.Hotel;
 
 @RestController
-public class HotelsApiControllerImpl implements HotelsApi {
+public class HotelsApiController implements HotelsApi {
 
 	@Override
 	public ResponseEntity<Hotel> getHotels(@NotNull @Valid Integer cityCode, @NotNull @Valid String checkIn,

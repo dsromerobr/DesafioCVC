@@ -52,11 +52,15 @@ paths:
           
       responses:
         "200":
-          description: Expected response to a valid request
+          description: Retorno das informações corretamente do hotel.
           schema:
             $ref: '#/definitions/hotel'
+        "404":
+          description: Não encontrado nenhum Hotel.
+          schema:
+            $ref: '#/definitions/error'            
         default:
-          description: unexpected error
+          description: Erros retornam no formato abaixo. Erros HTTP (400, 405, 415, 500)
           schema:
             $ref: '#/definitions/error'
 definitions:
@@ -110,8 +114,11 @@ definitions:
       - code
       - message
     properties:
-      code:
-        type: integer
-        format: int32
+      status:
+        type: string
       message:
         type: string
+      erros:
+        type: array
+        items:
+          type: string

@@ -49,11 +49,19 @@ swaggerSources {
   }
 }
 
+task deleteControllerFiles(type: Delete) {
+    delete fileTree("${swaggerSources.DesafioCVC.code.outputDir}") {
+        include "**/*Controller.java" 
+    }
+}
+
 test {
 	useJUnitPlatform()
 }
 
-// Configure compile task dependency and source
-compileJava.dependsOn swaggerSources.DesafioCVC.code
+// Gerar os objetos do YAML e Deletar os controllers que serão implementados manualmente.
+compileJava.dependsOn deleteControllerFiles
+deleteControllerFiles.dependsOn swaggerSources.DesafioCVC.code
+
 sourceSets.main.java.srcDir "${swaggerSources.DesafioCVC.code.outputDir}/src/main/java"
 sourceSets.main.resources.srcDir "${swaggerSources.DesafioCVC.code.outputDir}/src/main/resources"
