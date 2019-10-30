@@ -1,0 +1,6 @@
+{
+  "library": "spring-mvc",
+  "modelPackage": "br.com.cvc.DesafioCVC.model",
+  "apiPackage": "br.com.cvc.DesafioCVC.api",
+  "invokerPackage": "br.com.cvc.DesafioCVC"
+}
