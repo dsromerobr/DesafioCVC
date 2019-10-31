@@ -24,7 +24,7 @@ paths:
           name: CityCode
           required: true
           type: integer
-          description: Code of City (1032 -Porto Seguro, 7110 - Rio de Janeiro, 9626 - São Paulo)
+          description: Code of City (1032 -Porto Seguro, 7110 - Rio de Janeiro, 9626 - SÃ£o Paulo)
 
         - in: query
           name: checkIn
@@ -52,11 +52,11 @@ paths:
           
       responses:
         "200":
-          description: Retorno das informações corretamente do hotel.
+          description: Retorno das informaÃ§Ãµes corretamente do hotel.
           schema:
-            $ref: '#/definitions/hotel'
+            $ref: '#/definitions/hotels'
         "404":
-          description: Não encontrado nenhum Hotel.
+          description: NÃ£o encontrado nenhum Hotel.
           schema:
             $ref: '#/definitions/error'            
         default:
@@ -64,6 +64,11 @@ paths:
           schema:
             $ref: '#/definitions/error'
 definitions:
+  hotels:
+    type: array
+    items:
+       $ref: '#/definitions/hotel'
+    
   hotel:
     type: "object"
     required:
@@ -72,7 +77,6 @@ definitions:
     properties:
       id:
         type: integer
-        format: int64
       cityName:
         type: string
       rooms:
@@ -89,11 +93,11 @@ definitions:
     properties:
       roomID:
         type: integer
-        format: int64
       categoryName:
         type: string
       totalPrice:
         type: number
+        format: currency
       priceDetail:
         $ref: '#/definitions/priceDetail'
         
@@ -105,8 +109,10 @@ definitions:
     properties:
       pricePerDayAdult:
         type: number
+        format: currency
       pricePerDayChild:  
         type: number
+        format: currency
 
   error:
     type: "object"

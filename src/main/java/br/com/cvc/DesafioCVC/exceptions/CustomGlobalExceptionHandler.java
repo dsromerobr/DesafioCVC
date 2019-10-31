@@ -63,7 +63,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 	protected ResponseEntity<Object> handleMissingServletRequestParameter(
 	  MissingServletRequestParameterException ex, HttpHeaders headers, 
 	  HttpStatus status, WebRequest request) {
-	    String error = ex.getParameterName() + " é um parâmetro que está faltando";
+	    String error = ex.getParameterName() + " Ã© um parÃ¢metro que estÃ¡ faltando ";
 	     
 	    ApiError apiError = 
 	      new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
@@ -92,7 +92,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 	    StringBuilder builder = new StringBuilder();
 	    builder.append(ex.getMethod());
 	    builder.append(
-	      " método não suportado nesse request. Métodos suportados são ");
+	      " mÃ©todo nÃ£o suportador. Os mÃ©todos suportados sÃ£o ");
 	    ex.getSupportedHttpMethods().forEach(t -> builder.append(t + " "));
 	 
 	    ApiError apiError = new ApiError(HttpStatus.METHOD_NOT_ALLOWED, 
@@ -109,7 +109,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 	  WebRequest request) {
 	    StringBuilder builder = new StringBuilder();
 	    builder.append(ex.getContentType());
-	    builder.append(" media type não é suportada. Medias suportadas são ");
+	    builder.append(" media type nÃ£o Ã© suportada. Medias suportadas sÃ£o ");
 	    ex.getSupportedMediaTypes().forEach(t -> builder.append(t + ", "));
 	 
 	    ApiError apiError = new ApiError(HttpStatus.UNSUPPORTED_MEDIA_TYPE, 

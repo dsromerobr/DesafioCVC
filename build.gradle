@@ -26,12 +26,17 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jersey'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
     compile 'io.swagger.core.v3:swagger-annotations:2.0.7'
+    compile('org.springframework.boot:spring-boot-starter-webflux')
     compile 'io.springfox:springfox-swagger2:2.9.2'
     swaggerCodegen 'org.openapitools:openapi-generator-cli:3.3.4'
+    
+    compile 'org.modelmapper:modelmapper:2.3.0'
     
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -59,7 +64,7 @@ test {
 	useJUnitPlatform()
 }
 
-// Gerar os objetos do YAML e Deletar os controllers que ser„o implementados manualmente.
+// Gerar os objetos do YAML e Deletar os controllers que ser√£o implementados manualmente.
 compileJava.dependsOn deleteControllerFiles
 deleteControllerFiles.dependsOn swaggerSources.DesafioCVC.code
 

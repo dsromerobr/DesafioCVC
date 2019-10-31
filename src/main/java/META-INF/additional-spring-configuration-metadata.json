@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "hotels.timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'hotels.timeout'"
+  },
+  {
+    "name": "hotels.useragent",
+    "type": "java.lang.String",
+    "description": "A description for 'hotels.useragent'"
+  },
+  {
+    "name": "hotels.endpoint",
+    "type": "java.lang.String",
+    "description": "A description for 'hotels.endpoint'"
+  }
+]}
