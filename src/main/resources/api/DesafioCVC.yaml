@@ -63,6 +63,57 @@ paths:
           description: Erros retornam no formato abaixo. Erros HTTP (400, 405, 415, 500)
           schema:
             $ref: '#/definitions/error'
+            
+  '/hotels/{idHotel}':
+    get:
+      summary: Return Hotels by idHotel.
+      operationId: getHotelDetail
+      produces:
+        - application/json
+      parameters:
+        - name: idHotel
+          in: path
+          description: ID do Hotel
+          required: true
+          type: integer
+        - in: query
+          name: checkIn
+          required: true          
+          type: string
+          description: Date of CheckIn(DD/MM/YYYY) uses percent-encoded. For example, / is encoded as %2F (or %2f).
+
+        - in: query
+          name: checkOut
+          required: true          
+          type: string
+          description: Date of CheckOUT(DD/MM/YYYY) uses percent-encoded. For example, / is encoded as %2F (or %2f).
+
+        - in: query
+          name: qtdPax
+          required: true          
+          type: integer
+          description:  Mumber of Pax on the trip
+
+        - in: query
+          name: qtdChd
+          required: true          
+          type: integer
+          description: Mumber of Children on the trip
+          
+      responses:
+        "200":
+          description: Retorno das informações corretamente do hotel.
+          schema:
+            $ref: '#/definitions/hotels'
+        "404":
+          description: Não encontrado nenhum Hotel.
+          schema:
+            $ref: '#/definitions/error'            
+        default:
+          description: Erros retornam no formato abaixo. Erros HTTP (400, 405, 415, 500)
+          schema:
+            $ref: '#/definitions/error'
+            
 definitions:
   hotels:
     type: array

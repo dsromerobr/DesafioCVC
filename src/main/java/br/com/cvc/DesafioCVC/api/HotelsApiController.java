@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +32,29 @@ public class HotelsApiController implements HotelsApi {
 		List<Hotel> hotels = hotelMapper.mapper(hotelDTO);
 		hotels = hotelsService.setTotalPrice(hotels, checkIn, checkOut, qtdPax, qtdChd);
 
+		if(hotels.isEmpty()) {
+			return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
 		return ResponseEntity.ok(hotels);
 	}
+
+	@Override
+	public ResponseEntity<List<Hotel>> getHotelDetail(Integer idHotel, @NotNull @Valid String checkIn,
+			@NotNull @Valid String checkOut, @NotNull @Valid Integer qtdPax, @NotNull @Valid Integer qtdChd) {
+
+		HotelDTO[] hotelDTO = hotelsService.getHotelDetail(idHotel);
+		List<Hotel> hotels = hotelMapper.mapper(hotelDTO);
+		hotels = hotelsService.setTotalPrice(hotels, checkIn, checkOut, qtdPax, qtdChd);
+		
+		if(hotels.isEmpty()) {
+			return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		return ResponseEntity.ok(hotels);
+
+	}
+	
+
 
 }

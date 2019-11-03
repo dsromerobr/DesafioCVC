@@ -67,7 +67,7 @@ public class HotelsServiceImpl implements HotelsService {
 	public HotelDTO[] getHotels(int idCidade) {
 		try {
 
-			HotelDTO[] hotels = webClient.get().uri("/" + PATH, idCidade).retrieve().bodyToMono(HotelDTO[].class)
+			HotelDTO[] hotels = webClient.get().uri("/avail/" + PATH, idCidade).retrieve().bodyToMono(HotelDTO[].class)
 					.block();
 
 			return hotels;
@@ -107,6 +107,19 @@ public class HotelsServiceImpl implements HotelsService {
 		// --Somar tudo e você terá o totalPrice
 
 		return returnHotel;
+	}
+
+	@Override
+	public HotelDTO[] getHotelDetail(int idHotel) {
+		try {
+
+			HotelDTO[] hotels = webClient.get().uri("/" + PATH, idHotel).retrieve().bodyToMono(HotelDTO[].class)
+					.block();
+
+			return hotels;
+		} catch (Exception e) {
+			throw (WebClientException) e.fillInStackTrace();
+		}
 	}
 
 }
